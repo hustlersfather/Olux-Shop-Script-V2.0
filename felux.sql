@@ -32,7 +32,10 @@ CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
   `acctype` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `infos` varchar(255) NOT NULL,
+  `zipcode ` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
   `sold` int(11) NOT NULL,
@@ -41,32 +44,12 @@ CREATE TABLE `accounts` (
   `date` text NOT NULL,
   `resseller` varchar(255) NOT NULL,
   `reported` varchar(255) NOT NULL,
-  `sitename` varchar(255) NOT NULL,
+  `source` varchar(255) NOT NULL,
+  `bankname` varchar(255) NOT NULL,
+  `balance` int(11) NOT NULL,
   `login` varchar(100) DEFAULT NULL,
   `pass` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `accounts`
---
-
-INSERT INTO `accounts` (`id`, `acctype`, `country`, `infos`, `price`, `url`, `sold`, `sto`, `dateofsold`, `date`, `resseller`, `reported`, `sitename`, `login`, `pass`) VALUES
-(1, 'account', 'Albania', 'dsfds', 12, 'Nerflix.com | fdsfds ', 1, 'omermaksuti', '2020-03-24 15:22:30', '22/03/2020 02:35:15 pm', 'fisnik', '', 'Nerflix.com', '', ''),
-(2, 'account', 'United States', 'Fresh Accounts', 7, 'Nerflix.com | fdsfdsf ', 1, 'omermaksuti', '2020-05-01 18:30:30', '22/03/2020 02:48:12 pm', 'fisnik', '', 'Nerflix.com', '', ''),
-(3, 'account', 'United States', 'Fresh Accounts', 4, 'Nerflix.com | fdsfdsfdsadsa ', 1, 'omermaksuti', '2020-04-29 10:09:59', '22/03/2020 02:48:23 pm', 'fisnik', '', 'Nerflix.com', '', ''),
-(4, 'account', 'United States', 'Fresh Accounts', 4, 'Nerflix.com | dsadsadsadsa ', 1, 'omermaksuti', '2020-04-05 19:08:37', '22/03/2020 02:48:27 pm', 'fisnik', '', 'Nerflix.com', '', ''),
-(5, 'account', 'United States', 'Fresh Accounts', 4, 'Nerflix.com | dsadsadsadsadsadsa ', 0, 'omermaksuti', '2020-04-29 10:09:57', '22/03/2020 02:48:32 pm', 'fisnik', '', 'Nerflix.com', '', ''),
-(6, 'account', 'United Arab Emirates', 'Fresh Accounts', 3, 'Nerflix.com | teste@gmail.com Pass: test1233 ', 1, 'omermaksuti', '2020-03-25 12:27:23', '24/03/2020 07:33:16 pm', 'omermaksuti', '', 'Nerflix.com', NULL, NULL),
-(8, 'account', 'Albania', 'test upwork', 25, 'Upwork | teste@upwork.com | test ', 1, 'omermaksuti', '2020-05-01 21:13:36', '29/04/2020 10:39:49 am', 'omermaksuti', '', 'Upwork', NULL, NULL),
-(11, 'account', 'Albania', 'dsfds', 12, 'Nerflix.com | fdsfds ', 0, 'omermaksuti', '2020-05-05 12:23:51', '22/03/2020 02:35:15 pm', 'fisnik', '', 'Nerflix.com', '', ''),
-(12, 'account', 'Albania', 'dsfds', 12, 'Nerflix.com | fdsfds ', 0, 'omermaksuti', '2020-05-04 15:44:04', '01/05/2020 01:01:15 pm', 'fisnik', '', 'Nerflix.com', '', ''),
-(13, 'account', 'United Arab Emirates', 'Fresh Accounts', 3, 'Nerflix.com | teste@gmail.com Pass: test1233 ', 0, 'omermaksuti', '2020-03-25 12:27:23', '24/03/2020 07:33:16 pm', 'omermaksuti', '', 'Nerflix.com', NULL, NULL),
-(15, 'account', 'Albania', 'Fresh Accounts', 50, 'https://lexoje.al/ | fsfdsfdsf ', 0, '', '0', '08/05/2020 07:35:40 pm', '', '', 'https://lexoje.al/', NULL, NULL),
-(16, 'account', 'Albania', 'Fresh Accounts', 50, 'https://lexoje.al/ | fsfdsfdsf ', 0, '', '0', '08/05/2020 08:11:43 pm', '', '', 'https://lexoje.al/', NULL, NULL),
-(17, 'account', 'Andorra', 'Fresh Accounts', 56, 'https://lexoje.al/ | fgfdg ', 0, '', '0', '08/05/2020 08:14:50 pm', 'omermaksuti', '', 'https://lexoje.al/', NULL, NULL),
-(18, 'account', 'Andorra', 'Fresh Accounts', 56, 'https://lexoje.al/ | fgfdg ', 0, '', '0', '08/05/2020 08:16:01 pm', 'omermaksuti', '', 'https://lexoje.al/', NULL, NULL),
-(19, 'account', 'American Samoa', 'dsfds', 5, 'https://lexoje.al/ | fdsaf ', 0, '', '0', '08/05/2020 08:16:26 pm', 'omermaksuti', '', 'https://lexoje.al/', NULL, NULL),
-(20, 'account', 'American Samoa', 'dsfds', 15, 'https://lexoje.al/ | dfgsdfgfdgsfd ', 0, '', '0', '13/05/2020 01:30:46 am', 'omermaksuti', '', 'https://lexoje.al/', NULL, NULL);
 
 -- --------------------------------------------------------
 
