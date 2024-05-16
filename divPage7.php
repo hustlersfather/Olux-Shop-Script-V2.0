@@ -2,16 +2,13 @@
 ob_start();
 session_start();
 date_default_timezone_set('UTC');
-include "includes/config.php";
+include("includes/config.php"); 
 
 if (!isset($_SESSION['sname']) and !isset($_SESSION['spass'])) {
     header("location: ../");
     exit();
 }
 $usrid = mysqli_real_escape_string($dbcon, $_SESSION['sname']);
-?>
-<?php
-include("includes/config.php"); 
 
 // Get filter parameters
 $category = isset($_GET['category']) ? $_GET['category'] : '';
@@ -77,17 +74,247 @@ $countryOptions = getOptions($dbcon, 'country');
 $sidOptions = getOptions($dbcon, 'resseller');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Account Filtering</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-</head>
-<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="clip-list-2"></span>
+                </button>
+                <!-- start: LOGO -->
+                <div class="fadeIn">
+                    <a class="navbar-brand" href="/">
+                        Fullzinfo
+                    </a>
+                </div>
+                <!-- end: LOGO -->
+            </div>
+            <div class="navbar-tools">
+                <ul class="nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="cart.php?act=order" onclick="showpage('cart.php?act=order');">
+                            <span>Cart  </span>
+                            <i class="clip-cart"></i>
+                            <div id="cart">
+                                <span class="badge">0</span>
+                            </div>
+                        </a>
+                    </li>
+ 
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#">
+                            <i class="clip-bubble-3"></i>
+ 
+                        </a>
+ 
+                    </li>
+                    <!-- start: USER DROPDOWN -->
+                    <li class="dropdown current-user">
+                        <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+                            <span id="balance"><span class="label label-info"><?php echo number_format($balance, 2); ?>$</span></span>
+                            <span class="username">XBASELEET</span>
+                            <i class="clip-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="card.php?act=mycard" onclick="showpage('card.php?act=mycard');">
+                                    <i class="clip-user-2"></i>
+                                     My Cards
+                                </a>
+                            </li>
+                            <li>
+                                <a href="buy.php" onclick="showpage('buy.php');">
+                                    <i class="clip-calendar"></i>
+                                     Add Balance
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showpage('password.php');">
+                                    <i class="clip-key"></i>
+                                     Change password
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#" onclick="logout();">
+                                    <i class="clip-exit"></i>
+                                     Log Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- end: USER DROPDOWN -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="navbar-content">
+ 
+            <div class="main-navigation navbar-collapse collapse">
+ 
+                <div class="navigation-toggler">
+ 
+                    <i class="clip-chevron-left"></i>
+ 
+                    <i class="clip-chevron-right"></i>
+ 
+                </div>
+ 
+                <ul class="main-navigation-menu">
+ 
+                    <li class="active open">
+ 
+                        <a href="index.php" onclick="showpage('news.php');"><i class="clip-list"></i>
+ 
+                            <span class="title">News</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+ 
+ 
+                    <li>
+ 
+                        <a href="buy.php" onclick="showpage('buy.php');"><i class="fa fa-btc"></i>
+ 
+                            <span class="title">Add funds</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+ 
+ 
+ 
+                    <li>
+ 
+                        <a href="sellssn.php" onclick="showpage('sellssn.php');"><i class="fa fa-credit-card"></i>
+ 
+                            <span class="title">SSN/DOB</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+ 
+ 
+                    <li>
+ 
+                        <a href="sell_accs.php" onclick="showpage('sell_accs.php');"><i class="clip-user-2"></i>
+ 
+                            <span class="title">Accounts</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+                    <li>
+ 
+                        <a href="sellgv.php" onclick="showpage('sellgv.php');"><i class="clip-phone-2"></i>
+ 
+                            <span class="title">Google Voice</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+                    <li>
+ 
+                        <a href="selltm.php" onclick="showpage('selltm.php');"><i class="clip-email">@</i>
+ 
+                            <span class="title">Email accounts</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+ 
+                    <li>
+ 
+                        <a href="sell_files.php" onclick="showpage('sell_files.php');"><i class="clip-folder-download"></i>
+ 
+                            <span class="title">Files</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+ 
+                    <li>
+ 
+                        <a href="#" onclick="showpage('card.php?act=mycard&s=ssnnew');"><i class="clip-cart"></i>
+ 
+                            <span class="title">My Orders</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                    <li>
+ 
+                        <a href="faq.php" onclick="showpage('faq.php');"><i class="fa fa-question"></i>
+ 
+                            <span class="title">FAQ</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+ 
+                    <li id="supp_menu">
+ 
+                        <a href="support.php" onclick="showpage('support.php');"><i class="fa fa-stack-exchange"></i>
+ 
+                            <span class="title">Support</span>
+ 
+                            <span class="selected"></span>
+ 
+                        </a>
+ 
+                    </li>
+ 
+
+						
+                    <br><br>
+                    <p></p>
+                    <p></p>
+ 
+ 
+ 
+ 
+ 
+ 
+                </ul> 
+ 
+            </div>
+ 
+        </div>
+
     <?php include "header.php"; ?>
 
     <div class="alert alert-info text-left"></div>
