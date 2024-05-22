@@ -1,15 +1,15 @@
 <?php
-  ob_start();
-  session_start();
-  include "includes/config.php";
-  date_default_timezone_set('UTC');
-
-
-  if(isset($_SESSION['sname']) and isset($_SESSION['spass'])){
-   header("location: index.html");
-   exit();
-}
+set_time_limit(0);
+session_start();
+include_once ("includes/config.php");
+// Include global configuration and establish database connecti
+db_connection();
+if (!is_login()) 
+{
+    header("location: login.php");
+    exit();
 ?>
+
 <!doctype html>
 <html>
 <link rel="stylesheet" type="text/css" href="files/bootstrap/3/css/bootstrap.css" />
