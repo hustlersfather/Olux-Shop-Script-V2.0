@@ -1,74 +1,187 @@
-ErrorDocument 404 /JERUX/buyer/index.html
-RewriteEngine on
-index.html  index.php
-ajaxinfo.html  ajax.php
-mailer.html  mailer.php
-shell.html  shell.php
-leads.html  leads.php
-premium.html  premium.php
-addBalance.html  addBalance.php
-divPage1.html  divPage1.php
-divPage2.html  divPage2.php
-divPage3.html  divPage3.php
-divPage4.html  divPage4.php
-divPage5.html  divPage5.php
-divPage6.html  divPage6.php
-divPage7.html  divPage7.php
-divPage8.html  divPage8.php
-divPage9.html  divPage9.php
-divPage10.html  divPage10.php
-divPage11.html  divPage11.php
-divPage12.html  divPage12.php
-divPage13.html  divPage13.php
-divPage14.html  divPage14.php
-divPage15.html  divPage15.php
-divPage0.html  divPage0.php
-settingEdit.html  settingEdit.php
-CreateTicket.html  tticket.php
-CreateReport.html  treport.php
-addBalance.html  funds.php
-addBalanceAction.html  addBalanceAction.php
-rdp.html  rdp.php
-tutorial.html  tutorial.php
-MakePayment.html  pay.php
-BitcoinPayment.html  btc3.php
-banks.html  banks.php
-PerfectMoneyPayment.html  pm3.php
-tickets.html  tickets.php
-seller.html  becomeseller.php
-scampage.html  scampage.php
-logout.html  logout.php
-active.html  active.php
-orders.html  orders.php
-setting.html  setting.php
-static.html  static.php
-seller.html  rindex.php
-smtp.html  smtp.php
-AddSingleTool.html  addt.php
-cPanel.html  cPanel.php
-checkEmailChange.html  checkEmailChange.php
-reports.html  reports.php
-Rules.html  shoprules.php
-account.html  profile.php
-AddCards.html  addc.php
-vt-(.*).html vt.php?id=$1
-vr-(.*).html vr.php?id=$1
-divPageticket(.*).html divPageticket.php?id=$1
-divPagereport(.*).html divPagereport.php?id=$1
-showTicket(.*).html showTicket.php?id=$1
-CheckShell(.*).html check2shell.php?id=$1
-CheckSMTP(.*).html check2smtp.php?id=$1
-CheckCpanel(.*).html check2cp.php?id=$1
-CheckMailer(.*).html check2mailer.php?id=$1
-showOrder(.*).html openorder.php?id=$1
-addReply(.*).html addReply.php?id=$1
-addReportReply(.*).html addReportReply.php?id=$1
-divPagepayment(.*).html divPagepayment.php?p_data=$1
-Check.html check.php
-PMCheck.html PMcheck.php
-Payment.html payment.php
+use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('index');
+});
 
+Route::get('/ajaxinfo', function () {
+    return view('ajax');
+});
 
+Route::get('/mailer', function () {
+    return view('mailer');
+});
 
-(.*).html - [F,L]
+Route::get('/shell', function () {
+    return view('shell');
+});
+
+Route::get('/leads', function () {
+    return view('leads');
+});
+
+Route::get('/premium', function () {
+    return view('premium');
+});
+
+Route::get('/addBalance', function () {
+    return view('addBalance');
+});
+
+Route::get('/divPage{num}', function ($num) {
+    return view("divPage$num");
+})->where('num', '[0-9]+');
+
+Route::get('/settingEdit', function () {
+    return view('settingEdit');
+});
+
+Route::get('/CreateTicket', function () {
+    return view('tticket');
+});
+
+Route::get('/CreateReport', function () {
+    return view('treport');
+});
+
+Route::get('/MakePayment', function () {
+    return view('pay');
+});
+
+Route::get('/BitcoinPayment', function () {
+    return view('btc3');
+});
+
+Route::get('/banks', function () {
+    return view('banks');
+});
+
+Route::get('/PerfectMoneyPayment', function () {
+    return view('pm3');
+});
+
+Route::get('/tickets', function () {
+    return view('tickets');
+});
+
+Route::get('/seller', function () {
+    return view('becomeseller');
+});
+
+Route::get('/scampage', function () {
+    return view('scampage');
+});
+
+Route::get('/logout', function () {
+    return view('logout');
+});
+
+Route::get('/active', function () {
+    return view('active');
+});
+
+Route::get('/orders', function () {
+    return view('orders');
+});
+
+Route::get('/setting', function () {
+    return view('setting');
+});
+
+Route::get('/static', function () {
+    return view('static');
+});
+
+Route::get('/smtp', function () {
+    return view('smtp');
+});
+
+Route::get('/AddSingleTool', function () {
+    return view('addt');
+});
+
+Route::get('/cPanel', function () {
+    return view('cPanel');
+});
+
+Route::get('/reports', function () {
+    return view('reports');
+});
+
+Route::get('/Rules', function () {
+    return view('shoprules');
+});
+
+Route::get('/account', function () {
+    return view('profile');
+});
+
+Route::get('/AddCards', function () {
+    return view('addc');
+});
+
+// Dynamic Routes with ID Parameters
+Route::get('/vt-{id}', function ($id) {
+    return view('vt', ['id' => $id]);
+});
+
+Route::get('/vr-{id}', function ($id) {
+    return view('vr', ['id' => $id]);
+});
+
+Route::get('/divPageticket{id}', function ($id) {
+    return view('divPageticket', ['id' => $id]);
+});
+
+Route::get('/divPagereport{id}', function ($id) {
+    return view('divPagereport', ['id' => $id]);
+});
+
+Route::get('/showTicket{id}', function ($id) {
+    return view('showTicket', ['id' => $id]);
+});
+
+Route::get('/CheckShell{id}', function ($id) {
+    return view('check2shell', ['id' => $id]);
+});
+
+Route::get('/CheckSMTP{id}', function ($id) {
+    return view('check2smtp', ['id' => $id]);
+});
+
+Route::get('/CheckCpanel{id}', function ($id) {
+    return view('check2cp', ['id' => $id]);
+});
+
+Route::get('/CheckMailer{id}', function ($id) {
+    return view('check2mailer', ['id' => $id]);
+});
+
+Route::get('/showOrder{id}', function ($id) {
+    return view('openorder', ['id' => $id]);
+});
+
+Route::get('/addReply{id}', function ($id) {
+    return view('addReply', ['id' => $id]);
+});
+
+Route::get('/addReportReply{id}', function ($id) {
+    return view('addReportReply', ['id' => $id]);
+});
+
+Route::get('/divPagepayment{p_data}', function ($p_data) {
+    return view('divPagepayment', ['p_data' => $p_data]);
+});
+
+// Other Static Pages
+Route::get('/Check', function () {
+    return view('check');
+});
+
+Route::get('/PMCheck', function () {
+    return view('PMcheck');
+});
+
+Route::get('/Payment', function () {
+    return view('payment');
+});
